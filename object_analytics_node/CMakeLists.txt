@@ -15,7 +15,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(object_analytics_node)
 
-set(CRYSTAL_BLOOM_RELEASE FALSE)
+set(CRYSTAL_BLOOM_RELEASE TRUE)
 # TODO(yechun1): always build tracking when opencv3.3 is available for debian package.
 # Tracking feature depends on opencv3.3 libraries, the ubuntu 18.04 only support opencv3.2.
 # to bloom release object package, we need to fix dependence issue, as there is no opencv3.3 debian packages,
@@ -33,7 +33,7 @@ endif()
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   # we dont use add_compile_options with pedantic in message packages

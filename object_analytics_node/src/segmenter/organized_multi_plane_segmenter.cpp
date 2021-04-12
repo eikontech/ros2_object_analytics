@@ -97,7 +97,7 @@ void OrganizedMultiPlaneSegmenter::segmentObjects_ConnectComponent(
   plane_labels.resize(cloud->size(), false);
   euclidean_cluster_comparator_->setInputCloud(cloud);
   euclidean_cluster_comparator_->setLabels(labels);
-  euclidean_cluster_comparator_->setExcludeLabels(plane_labels);
+  // euclidean_cluster_comparator_->setExcludeLabels(plane_labels);
 
   PointCloud<Label> euclidean_labels;
   pcl::OrganizedConnectedComponentSegmentation<PointT, Label> euclidean_segmentation(

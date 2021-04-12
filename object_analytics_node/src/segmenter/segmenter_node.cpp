@@ -31,7 +31,7 @@ using object_analytics_node::segmenter::AlgorithmProviderImpl;
 SegmenterNode::SegmenterNode(rclcpp::NodeOptions options)
 : Node("SegmenterNode", options)
 {
-  pub_ = create_publisher<object_analytics_msgs::msg::ObjectsInBoxes3D>(Const::kTopicLocalization);
+  pub_ = create_publisher<object_analytics_msgs::msg::ObjectsInBoxes3D>(Const::kTopicLocalization, 10);
 
   rclcpp::Node::SharedPtr node = std::shared_ptr<rclcpp::Node>(this);
   pcls = std::unique_ptr<Pcls>(new Pcls(node, Const::kTopicPC2));
@@ -49,8 +49,8 @@ void SegmenterNode::callback(
   const ObjectsInBoxes::ConstSharedPtr objs_2d,
   const sensor_msgs::msg::PointCloud2::ConstSharedPtr pcls)
 {
-  ObjectsInBoxes3D::SharedPtr msgs = std::make_shared<ObjectsInBoxes3D>();
-  impl_->segment(objs_2d, pcls, msgs);
+  auto msgs = ObjectsInBoxes3D();
+  //impl_->segment(objs_2d, pcls, msgs);
   pub_->publish(msgs);
 }
 }  // namespace segmenter
